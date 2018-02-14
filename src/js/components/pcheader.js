@@ -134,9 +134,6 @@ const TabPane = Tabs.TabPane;
                   <Menu.Item key="keji">
                     <Icon type="star-o" />科技
                   </Menu.Item>
-                  <Menu.Item key="shishang">
-                    <Icon type="star-o" />时尚
-                  </Menu.Item>
                   {userShow}
                 </Menu>
 

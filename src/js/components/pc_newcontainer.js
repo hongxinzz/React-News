@@ -19,7 +19,7 @@ export default class PCNewsContainer extends React.Component {
       <div>
         <Row>
           <Col span={2}></Col>
-          <Col span={15} className="contains">
+          <Col span={20}>
           <div className='left-contains'>
                 <Carousel {...settings}>
                    <div><img src="http://img4.imgtn.bdimg.com/it/u=1741114194,2661513872&fm=11&gp=0.jpg"/></div>
@@ -29,7 +29,8 @@ export default class PCNewsContainer extends React.Component {
                 </Carousel>
                 <NewImgBlock  count={6} type="guoji" width="400px" cartTitle="国际新闻" imagesWidth="110px"/>
             </div>
-            <Tabs className="imgblock" defaultActiveKey="5">
+            <div className="contains">
+              <Tabs className="imgblock" defaultActiveKey="5" >
                 <TabPane tab="今日头条" key="1">
                     <PCNewsBlock count={22} type="top" width="100%"  bordered="true"/>
                 </TabPane>  
@@ -46,11 +47,12 @@ export default class PCNewsContainer extends React.Component {
                     <PCNewsBlock count={22} type="guonei" width="100%"  bordered="true"/>
                 </TabPane>    
             </Tabs>
-              
+            </div>
+            <div className="right-contains">
+               <NewImgBlock  count={10} type="yule" width="316px"  cartTitle="最新资讯" imagesWidth="110px"/>
+            </div>
           </Col>
-          <Col span={1} style={{marginLeft:-40}}>
-            <NewImgBlock  count={10} type="yule" width="316px"  cartTitle="最新资讯" imagesWidth="110px"/>
-          </Col>
+          <Col span={2}></Col>
         </Row>
       </div>
     )

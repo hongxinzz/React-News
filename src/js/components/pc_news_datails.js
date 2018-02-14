@@ -3,12 +3,13 @@ import {Row, Col, BackTop} from 'antd';
 import PCHeader from './pcheader.js';
 import PCFooter from './pcfoot.js';
 import NewImgBlock from './pc_img_block.js';
+import Comment from './comm_comment.js';
 
 export default class NewsDetails extends React.Component {
   constructor() {
     super();
     this.state = {
-      newsItem: ''
+      newsItem: '' 
     };
   };
   componentDidMount() {
@@ -29,11 +30,11 @@ export default class NewsDetails extends React.Component {
         <PCHeader/>
         <Row> 
           <Col span={2}></Col>
-          <Col span={14} className="container">
-            <div class="articleContainer" dangerouslySetInnerHTML={this.createMarkup()}></div>
-            <hr/>
+          <Col span={14} >
+            <div class="articleContainer contains" dangerouslySetInnerHTML={this.createMarkup()}></div>
+              <hr />
+            <Comment uniquekey={this.props.params.uniquekey}/>
           </Col>
-          <Col span={1}></Col>
           <Col span={6}>
             <NewImgBlock count={20} type="keji" width="80%" cartTitle="相关新闻" />
           </Col>
