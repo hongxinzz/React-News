@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Row, Col ,Modal, Button, Menu, Icon, Input,Form,Tabs,message } from 'antd';
-
+import { Router,Route,Link,browserHistory } from 'react-router';
 import 'antd/dist/antd.css';
 const FormItem = Form.Item;
 const MenuItemGroup = Menu.ItemGroup;
@@ -14,17 +14,18 @@ const TabPane = Tabs.TabPane;
       modalVisible: false,
       action:'logout',
       hasLogin:'false',
-      userName:'',
+      userNickName:'',
       userId:0
      }
   } 
   
   componentWillMount(){
-    if (localStorage.userid!='') {
+    if(localStorage.userid!=''){
       this.setState({hasLogined:true});
       this.setState({userNickName:localStorage.userNickName,userid:localStorage.userid});
     }
   };
+
 
     handleClick(e){
       if (e.key=="register") {
@@ -47,19 +48,17 @@ const TabPane = Tabs.TabPane;
       var myFetch = {
         method:'GET'
       }
-      var formData = this.props.form.getFieldsValue();
-      console.log(formData);
-      fetch("http://newsapi.gugujiankong.com/Handler.ashx?action=" + this.state.action
-    + "&username="+formData.userName+"&password="+formData.password
-    +"&r_userName=" + formData.r_userName + "&r_password="
-    + formData.r_password + "&r_confirmPassword="
-    + formData.r_confirmPassword, myFetch)
-    .then(response=>response.json())
-    .then(json=>{
-        this.setState({
-          userName:json.NickUserName,userId:json.Userid
-        });
-        localStorage.userid= json.UserId;
+      var formData= this.props.form.getFieldsValue();
+    console.log(formData);
+    fetch("http://newsapi.gugujiankong.com/Handler.ashx?action="+this.state.action
+    +"&username="+formData.userName
+    +"&password="+formData.password
+    +"&r_userName="+formData.r_userName
+    +"&r_password="+formData.r_password
+    +"&r_confirmPassword="+formData.r_confirmPassword,myFetch).
+    then(response=>response.json()).then(json=>{
+      this.setState({userNickName:json.NickUserName,userid:json.UserId});
+      localStorage.userid = json.UserId;
       localStorage.userNickName = json.NickUserName;
     });
 
@@ -89,11 +88,13 @@ const TabPane = Tabs.TabPane;
       const userShow = this.state.hasLogined
       ?
       <Menu.Item key="logout" className="register">
-      <Button type="primary" htmlType="button">{this.state.userName}</Button>
+      <Button type="primary" htmlType="button" className="userbtn">{this.state.userNickName}</Button>
       &nbsp;&nbsp;
-      <Button type="dashed" htmlType="button">个人中心</Button>
+      <Link target="_blank" to={`/usercenter`} className="linka">
+        <Button type="dashed" htmlType="button">个人中心</Button>
+      </Link>
       &nbsp;&nbsp;
-      <Button type="ghost" htmlType="button" onClick={this.logout.bind(this)}>退出</Button>
+      <Button type="ghost" htmlType="button" onClick={this.logout.bind(this) }className="btn-logout">退出</Button>
       </Menu.Item> 
       :
       <Menu.Item className="register" key="register">
