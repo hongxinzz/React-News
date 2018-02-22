@@ -17,7 +17,7 @@
     npm config set registry https://registry.npm.taobao.org 设置淘宝镜像 在执行npm时默认为cnpm
     npm init 初始化
     npm install 安装需要的环境
-    npm webpack-dev-server 加载
+     webpack-dev-server 加载
     http://localhost:8080/
     
     
